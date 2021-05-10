@@ -14,7 +14,7 @@ function getValue(nextProps, prop) {
 
 export default class Tile extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { tileClassName, tileContent } = nextProps;
+    const { tileClassName, tileComponent, tileContent } = nextProps;
 
     const nextState = {};
 
@@ -26,6 +26,11 @@ export default class Tile extends Component {
     if (tileContent !== prevState.tileContentProps) {
       nextState.tileContent = getValue(nextProps, tileContent);
       nextState.tileContentProps = tileContent;
+    }
+
+    if (tileComponent !== prevState.tileComponentProps) {
+      nextState.tileComponent = getValue(nextProps, tileComponent);
+      nextState.tileComponentProps = tileComponent;
     }
 
     return nextState;
@@ -51,10 +56,12 @@ export default class Tile extends Component {
       tileDisabled,
       view,
     } = this.props;
-    const { tileClassName, tileContent } = this.state;
+    const { tileClassName, tileContent, tileComponent } = this.state;
+
+    const TileComponent = tileComponent ?? "button";
 
     return (
-      <button
+      <TileComponent
         className={mergeClassNames(classes, tileClassName)}
         disabled={
           (minDate && minDateTransform(minDate) > date)
@@ -75,7 +82,7 @@ export default class Tile extends Component {
           )
           : children}
         {tileContent}
-      </button>
+      </TileComponent>
     );
   }
 }

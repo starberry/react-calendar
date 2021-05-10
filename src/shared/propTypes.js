@@ -103,6 +103,11 @@ export const tileGroupProps = {
     PropTypes.func,
     isClassName,
   ]),
+  tileComponent: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.node,
+    PropTypes.string,
+  ]),
   tileContent: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.node,
@@ -127,6 +132,11 @@ export const tileProps = {
   tileClassName: PropTypes.oneOfType([
     PropTypes.func,
     isClassName,
+  ]),
+  tileComponent: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.node,
+    PropTypes.string,
   ]),
   tileContent: PropTypes.oneOfType([
     PropTypes.func,
